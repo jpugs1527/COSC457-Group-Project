@@ -23,6 +23,7 @@ exports.signup = function(req, res) {
       "')";
 
     var query = db.query(sql, function(err, result) {
+      if (err) throw err;
       message = "Succesfully! Your account has been created.";
       res.render("signup.ejs", { message: message });
     });
