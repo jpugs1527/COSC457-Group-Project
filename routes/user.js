@@ -52,7 +52,7 @@ exports.login = function(req, res) {
       if (results.length) {
         req.session.userId = results[0].id;
         req.session.user = results[0];
-        console.log(results[0].id);
+        console.log("User #" + results[0].id);
         res.redirect("/home/dashboard");
       } else {
         message = "Wrong Credentials.";
@@ -68,7 +68,6 @@ exports.login = function(req, res) {
 exports.dashboard = function(req, res, next) {
   var user = req.session.user,
     userId = req.session.userId;
-  console.log("ddd=" + userId);
   if (userId == null) {
     res.redirect("/login");
     return;
