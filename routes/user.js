@@ -114,3 +114,8 @@ exports.editprofile = function(req, res) {
     res.render("edit_profile.ejs", { data: results });
   });
 };
+
+//---------------------------------search functionality----------------------------------
+exports.searchDB = function(req, res) {
+  var query = req.session;
+};
