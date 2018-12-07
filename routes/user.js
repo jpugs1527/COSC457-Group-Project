@@ -55,7 +55,7 @@ exports.login = function(req, res) {
         console.log("User #" + results[0].id);
         res.redirect("/home/dashboard");
       } else {
-        message = "Wrong Credentials.";
+        message = "Incorrect username and/or password.";
         res.render("index.ejs", { message: message });
       }
     });
