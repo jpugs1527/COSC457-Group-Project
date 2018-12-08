@@ -48,6 +48,7 @@ app.get("/home/dashboard", user.dashboard); //call for dashboard page after logi
 app.get("/home/logout", user.logout); //call for logout
 app.get("/home/profile", user.profile); //to render users profile
 app.get("/home/search", user.searchDB); //call for search
+app.get("/home/inventory", user.inventory); //to render dealer inventory
 
 //Middleware
 app.listen(8082);

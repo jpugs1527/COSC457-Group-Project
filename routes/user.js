@@ -119,3 +119,17 @@ exports.editprofile = function(req, res) {
 exports.searchDB = function(req, res) {
   var query = req.session;
 };
+
+//---------------------------------Inventory----------------------------------
+exports.inventory = function(req, res) {
+  var userId = req.session.userId;
+  if (userId == null) {
+    res.redirect("/login");
+    return;
+  }
+
+  var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+  db.query(sql, function(err, result) {
+    res.render("inventory.ejs", { data: result });
+  });
+}
