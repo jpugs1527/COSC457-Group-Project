@@ -115,11 +115,6 @@ exports.editprofile = function(req, res) {
   });
 };
 
-//---------------------------------search functionality----------------------------------
-exports.searchDB = function(req, res) {
-  var query = req.session;
-};
-
 //---------------------------------Inventory----------------------------------
 exports.inventory = function(req, res) {
   var userId = req.session.userId;
@@ -132,7 +127,7 @@ exports.inventory = function(req, res) {
   db.query(sql, function(err, result) {
     res.render("inventory.ejs", { data: result });
   });
-}
+};
 
 //---------------------------------Upload----------------------------------
 exports.upload = function(req, res) {
@@ -173,3 +168,56 @@ exports.upload = function(req, res) {
     res.render("upload");
   }
 };
+
+//---------------------------------Services----------------------------------
+exports.services = function(req, res) {
+  var userId = req.session.userId;
+  if (userId == null) {
+    res.redirect("/login");
+    return;
+  }
+
+  var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+  db.query(sql, function(err, result) {
+    res.render("services.ejs", { data: result });
+  });
+};
+
+//---------------------------------Schedule Service----------------------------------
+exports.scheduleService = function(req, res) {
+  message = "";
+  if (req.method == "POST") {
+    var post = req.body;
+    var service = post.service;
+    var date = post.date
+
+    var sql =
+      "INSERT INTO `services`(`service`,`date`) VALUES ('" +
+      service +
+      "','" +
+      date +
+      "')";
+
+    var query = db.query(sql, function(err, result) {
+      if (err) throw err;
+      message = "Succesfully! You have scheduled a " + service + " on " + date + ".";
+      res.render("scheduleService.ejs", { message: message });
+    });
+  } else {
+    res.render("scheduleService");
+  }
+};
+
+//---------------------------------Contact----------------------------------
+exports.contact = function(req, res) {
+  var userId = req.session.userId;
+  if (userId == null) {
+    res.redirect("/login");
+    return;
+  }
+
+  var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+  db.query(sql, function(err, result) {
+    res.render("contact.ejs", { data: result });
+  });
+}
