@@ -1,0 +1,156 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Car Dealership</title>
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="js/bootstrap-imgupload.js"></script>
+  </head>
+  <body>
+    <div class="container col-sm-12" id="uploadForm">
+      <div
+        id="uploadBox"
+        style=" margin-top:50px"
+        class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"
+      >
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <div class="panel-title">Upload Vehicle</div>
+            <div
+              style="float:right; font-size: 85%; position: relative; top:-10px"
+            >
+              <!-- <a id="signinlink" href="/">Sign In</a> -->
+            </div>
+          </div>
+          <div class="panel-body">
+            <form
+              class="form-horizontal"
+              role="form"
+              method="post"
+              action="/home/upload"
+              onSubmit="return checkblank(this);"
+            >
+              <% if (message.length > 0) { %>
+              <div class="alert alert-success col-sm-12"><%= message %></div>
+              <% } %>
+              <div
+                id="signupalert"
+                style="display:none"
+                class="alert alert-danger"
+              >
+                <p>Error:</p>
+                <span></span>
+              </div>
+
+              <div class="form-group">
+                <label for="vin" class="col-md-3 control-label">VIN #</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="vin"
+                    placeholder="VIN"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="year" class="col-md-3 control-label">Year</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="year"
+                    placeholder="Year"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="make" class="col-md-3 control-label"
+                  >Vehicle Make</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="make"
+                    placeholder="Make"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="model" class="col-md-3 control-label"
+                  >Vehicle Model</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="model"
+                    placeholder="Model"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="bodystyle" class="col-md-3 control-label"
+                  >Bodystyle</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="bodystyle"
+                    placeholder="Bodystyle"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="color" class="col-md-3 control-label">Color</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="color"
+                    placeholder="Color"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="price" class="col-md-3 control-label">Price</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="price"
+                    placeholder="Price"
+                  />
+                </div>
+              </div>
+              <div class="imgupload panel panel-default">
+                <div class="file-tab panel-body">
+                  <div class="col-md-5">
+                    <button type="button" class="btn col-md-offset-6 btn-default btn-file">
+                      <span><b>Image</b></span>
+                      <input type="file" name="file-input" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <!-- Button -->
+                <div class="col-md-offset-3 col-md-9">
+                  <button id="btn-signup" type="submit" class="btn btn-info">
+                    <i class="glyphicon glyphicon-upload"></i> Upload
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

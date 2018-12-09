@@ -133,3 +133,43 @@ exports.inventory = function(req, res) {
     res.render("inventory.ejs", { data: result });
   });
 }
+
+//---------------------------------Upload----------------------------------
+exports.upload = function(req, res) {
+  message = "";
+  if (req.method == "POST") {
+    var post = req.body;
+    var vin = post.vin;
+    var year = post.year
+    var make = post.make;
+    var model = post.model;
+    var bodystyle = post.bodystyle;
+    var color = post.color;
+    var price = post.price;
+
+    var sql =
+      "INSERT INTO `vehicles`(`vin`,`year`,`make`,`model`,`bodystyle`,`color`,`price`) VALUES ('" +
+      vin +
+      "','" +
+      year +
+      "','" +
+      make +
+      "','" +
+      model +
+      "','" +
+      bodystyle +
+      "','" +
+      color +
+      "','" +
+      price +
+      "')";
+
+    var query = db.query(sql, function(err, result) {
+      if (err) throw err;
+      message = "Succesfully! You have uploaded a " + year + " " + make + " " + model + ".";
+      res.render("upload.ejs", { message: message });
+    });
+  } else {
+    res.render("upload");
+  }
+};

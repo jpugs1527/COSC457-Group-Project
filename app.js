@@ -49,6 +49,8 @@ app.get("/home/logout", user.logout); //call for logout
 app.get("/home/profile", user.profile); //to render users profile
 app.get("/home/search", user.searchDB); //call for search
 app.get("/home/inventory", user.inventory); //to render dealer inventory
+app.get("/home/upload", user.upload); //to render the upload page
+app.post("/home/upload", user.upload); //call for upload post
 
 //Middleware
 app.listen(8082);
