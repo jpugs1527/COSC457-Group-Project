@@ -1,9 +1,9 @@
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `mob_no` varchar(10) NOT NULL,
-  `user_name` varchar(20) NOT NULL,
-  `password` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `vin` varchar(17) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `make` text NOT NULL,
+  `model` text NOT NULL,
+  `bodystyle` text NOT NULL,
+  `color` text NOT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`vin`));

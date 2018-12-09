@@ -1,3 +1,4 @@
+<%- include header %>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -53,6 +54,7 @@
                     class="form-control"
                     name="vin"
                     placeholder="VIN"
+                    required
                   />
                 </div>
               </div>
@@ -64,6 +66,7 @@
                     class="form-control"
                     name="year"
                     placeholder="Year"
+                    required
                   />
                 </div>
               </div>
@@ -77,6 +80,7 @@
                     class="form-control"
                     name="make"
                     placeholder="Make"
+                    required
                   />
                 </div>
               </div>
@@ -90,6 +94,7 @@
                     class="form-control"
                     name="model"
                     placeholder="Model"
+                    required
                   />
                 </div>
               </div>
@@ -103,6 +108,7 @@
                     class="form-control"
                     name="bodystyle"
                     placeholder="Bodystyle"
+                    required
                   />
                 </div>
               </div>
@@ -114,6 +120,7 @@
                     class="form-control"
                     name="color"
                     placeholder="Color"
+                    required
                   />
                 </div>
               </div>
@@ -125,13 +132,17 @@
                     class="form-control"
                     name="price"
                     placeholder="Price"
+                    required
                   />
                 </div>
               </div>
               <div class="imgupload panel panel-default">
                 <div class="file-tab panel-body">
                   <div class="col-md-5">
-                    <button type="button" class="btn col-md-offset-6 btn-default btn-file">
+                    <button
+                      type="button"
+                      class="btn col-md-offset-6 btn-default btn-file"
+                    >
                       <span><b>Image</b></span>
                       <input type="file" name="file-input" />
                     </button>
