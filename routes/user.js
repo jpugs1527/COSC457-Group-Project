@@ -76,7 +76,7 @@ exports.dashboard = function(req, res, next) {
   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
 
   db.query(sql, function(err, results) {
-    res.render("dashboard.ejs", { user: user });
+    res.render("dashboard.ejs", { data: results });
   });
 };
 
@@ -96,6 +96,7 @@ exports.profile = function(req, res) {
   }
 
   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+
   db.query(sql, function(err, result) {
     res.render("profile.ejs", { data: result });
   });
@@ -177,7 +178,8 @@ exports.services = function(req, res) {
     return;
   }
 
-  var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+  var sql = "SELECT * FROM `services`";
+
   db.query(sql, function(err, result) {
     res.render("services.ejs", { data: result });
   });
@@ -210,14 +212,31 @@ exports.scheduleService = function(req, res) {
 
 //---------------------------------Contact----------------------------------
 exports.contact = function(req, res) {
-  var userId = req.session.userId;
-  if (userId == null) {
-    res.redirect("/login");
-    return;
-  }
+  message = "";
+  if (req.method == "POST") {
+    var post = req.body;
+    var fName = post.fName;
+    var lName = post.lName;
+    var mob_no = post.mob_no;
+    var text = post.text;
 
-  var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
-  db.query(sql, function(err, result) {
-    res.render("contact.ejs", { data: result });
-  });
-}
+    var sql =
+      "INSERT INTO `contact`(`fName`,`lName`,`mob_no`,`text`) VALUES ('" +
+      fName +
+      "','" +
+      lName +
+      "','" +
+      mob_no +
+      "','" +
+      text +
+      "')";
+
+    var query = db.query(sql, function(err, result) {
+      if (err) throw err;
+      message = "Message sent to management!";
+      res.render("contact.ejs", { message: message });
+    });
+  } else {
+    res.render("contact");
+  }
+};

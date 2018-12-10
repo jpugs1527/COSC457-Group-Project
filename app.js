@@ -34,7 +34,7 @@ app.use(
     secret: "keyboard cat",
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 600000 }
   })
 );
 
@@ -53,7 +53,8 @@ app.post("/home/upload", user.upload); //call for upload post
 app.get("/home/services", user.services); //to render the services page
 app.get("/home/scheduleService", user.scheduleService); //render schedule service page
 app.post("/home/scheduleService", user.scheduleService); //call for schedule service post
-app.get("/home/contact", user.contact);
+app.get("/home/contact", user.contact);  //render contact page
+app.post("/home/contact", user.contact);  //call to post contact form to manager table
 
 //Middleware
 app.listen(8082);

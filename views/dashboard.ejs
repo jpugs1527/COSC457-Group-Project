@@ -3,9 +3,15 @@
   <!-- Main component for a primary marketing message or call to action -->
   <div class="jumbotron">
     <h1>Welcome</h1>
-    <p>Hello Dashboard</p>
+    <p class="col-md-offset-1">
+      Hello,<br />
+      <%=data[0].first_name%>
+    </p>
     <p>
-      <a class="btn btn-lg btn-primary" href="/home/profile" role="button"
+      <a
+        class="btn btn-lg btn-primary col-md-offset-1"
+        href="/home/profile"
+        role="button"
         >Profile view »</a
       >
     </p>

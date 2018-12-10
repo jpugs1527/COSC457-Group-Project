@@ -22,7 +22,38 @@
             <li>Paint correction services</li>
             <li>etc</li>
           </ul>
-          <button class="btn btn-info"><a href="/home/scheduleService">Schedule Service</a></button>
+          <button class="btn btn-info">
+            <a href="/home/scheduleService">Schedule Service</a>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container col-md-12">
+      <div class="panel panel-info col-md-offset-4 col-md-4">
+        <div class="panel-heading col-md-12">
+          <h3 class="panel-title">Services Requested</h3>
+        </div>
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-user-information">
+            <tr>
+              <th width="50px">No</th>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Complete</th>
+            </tr>
+            <% if(data.length){ for(var i = 0;i < data.length;i++) { %>
+            <tr>
+              <td><%=(i+1)%></td>
+              <td><%=data[i].service%></td>
+              <td><%=data[i].date%></td>
+              <td><input type="checkbox"/></td>
+            </tr>
+            <% } }else{ %>
+            <tr>
+              <td colspan="3">No data</td>
+            </tr>
+            <% } %>
+          </table>
         </div>
       </div>
     </div>
