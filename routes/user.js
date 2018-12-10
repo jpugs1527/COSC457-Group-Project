@@ -124,7 +124,7 @@ exports.inventory = function(req, res) {
     return;
   }
 
-  var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+  var sql = "SELECT * FROM `vehicles`";
   db.query(sql, function(err, result) {
     res.render("inventory.ejs", { data: result });
   });
@@ -136,7 +136,7 @@ exports.upload = function(req, res) {
   if (req.method == "POST") {
     var post = req.body;
     var vin = post.vin;
-    var year = post.year
+    var year = post.year;
     var make = post.make;
     var model = post.model;
     var bodystyle = post.bodystyle;
@@ -162,7 +162,14 @@ exports.upload = function(req, res) {
 
     var query = db.query(sql, function(err, result) {
       if (err) throw err;
-      message = "Succesfully! You have uploaded a " + year + " " + make + " " + model + ".";
+      message =
+        "Succesfully! You have uploaded a " +
+        year +
+        " " +
+        make +
+        " " +
+        model +
+        ".";
       res.render("upload.ejs", { message: message });
     });
   } else {
@@ -191,7 +198,7 @@ exports.scheduleService = function(req, res) {
   if (req.method == "POST") {
     var post = req.body;
     var service = post.service;
-    var date = post.date
+    var date = post.date;
 
     var sql =
       "INSERT INTO `services`(`service`,`date`) VALUES ('" +
@@ -202,7 +209,8 @@ exports.scheduleService = function(req, res) {
 
     var query = db.query(sql, function(err, result) {
       if (err) throw err;
-      message = "Succesfully! You have scheduled a " + service + " on " + date + ".";
+      message =
+        "Succesfully! You have scheduled a " + service + " on " + date + ".";
       res.render("scheduleService.ejs", { message: message });
     });
   } else {
@@ -238,5 +246,29 @@ exports.contact = function(req, res) {
     });
   } else {
     res.render("contact");
+  }
+};
+
+//--------------------------------Search--------------------------------
+exports.search = function(req, res) {
+  message = "";
+  if (req.method == "GET") {
+    var post = req.body;
+    var bodystyle = post.bodystyle;
+    var make = post.make;
+    var color = post.color;
+
+    var sql =
+      "SELECT * FROM `vehicles` WHERE `bodystyle`='" +
+      bodystyle +
+      "' AND  `make`='" +
+      make +
+      "' AND `color`='" +
+      color +
+      "'";
+
+    db.query(sql, function(err, result) {
+      res.render("inventory.ejs", { data: result });
+    });
   }
 };

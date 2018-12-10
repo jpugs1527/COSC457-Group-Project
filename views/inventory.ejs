@@ -12,7 +12,97 @@
   <body>
     <div class="row">
       <div class="col-sm-offset-10 button">
-        <a href="/home/Upload" class="btn btn-success">Upload</a>
+        <a href="/home/upload" class="btn btn-success">Upload</a>
+      </div>
+    </div>
+    <div class="container col-md-12">
+      <div class="panel panel-info col-md-4 col-md-2">
+        <div class="panel-heading col-md-12">
+          <h3 class="panel-title">Filters</h3>
+        </div>
+        <section>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Vehichle Type <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a value="Car">Car</a></li>
+              <li><a value="Truck">Truck</a></li>
+              <li><a value="SUV">SUV</a></li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Make <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Ford</a></li>
+              <li><a href="#">Mercedes</a></li>
+              <li><a href="#">BMW</a></li>
+              <li><a href="#">Fiat</a></li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Color <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Red</a></li>
+              <li><a href="#">Blue</a></li>
+              <li><a href="#">White</a></li>
+              <li><a href="#">Black</a></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+      <div class="panel panel-info col-md-offset-2 col-md-4">
+        <div class="panel-heading col-md-12">
+          <h3 class="panel-title">Inventory</h3>
+        </div>
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-user-information">
+            <tr>
+              <th width="50px">No</th>
+              <th>Year</th>
+              <th>Make</th>
+              <th>Model</th>
+            </tr>
+            <% if(data.length){ for(var i = 0;i < data.length;i++) { %>
+            <tr>
+              <td><%=(i+1)%></td>
+              <td><%=data[i].year%></td>
+              <td><%=data[i].make%></td>
+              <td><%=data[i].model%></td>
+            </tr>
+            <% } }else{ %>
+            <tr>
+              <td colspan="3">No data</td>
+            </tr>
+            <% } %>
+          </table>
+        </div>
       </div>
     </div>
   </body>

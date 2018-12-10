@@ -48,6 +48,7 @@ app.get("/home/dashboard", user.dashboard); //call for dashboard page after logi
 app.get("/home/logout", user.logout); //call for logout
 app.get("/home/profile", user.profile); //to render users profile
 app.get("/home/inventory", user.inventory); //to render dealer inventory
+app.post("/home/inventory", user.inventory);  //post to inventory
 app.get("/home/upload", user.upload); //to render the upload page
 app.post("/home/upload", user.upload); //call for upload post
 app.get("/home/services", user.services); //to render the services page
@@ -55,6 +56,8 @@ app.get("/home/scheduleService", user.scheduleService); //render schedule servic
 app.post("/home/scheduleService", user.scheduleService); //call for schedule service post
 app.get("/home/contact", user.contact);  //render contact page
 app.post("/home/contact", user.contact);  //call to post contact form to manager table
+app.get("/home/search", user.search); //call to post for search
 
 //Middleware
 app.listen(8082);
+console.log("Application running at localhost:8082");
