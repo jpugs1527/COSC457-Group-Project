@@ -56,7 +56,7 @@ app.get("/home/scheduleService", user.scheduleService); //render schedule servic
 app.post("/home/scheduleService", user.scheduleService); //call for schedule service post
 app.get("/home/contact", user.contact);  //render contact page
 app.post("/home/contact", user.contact);  //call to post contact form to manager table
-app.get("/home/search", user.search); //call to post for search
+app.post("/home/search", user.search); //call to post for search
 
 //Middleware
 app.listen(8082);

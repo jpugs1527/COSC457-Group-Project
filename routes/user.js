@@ -252,7 +252,7 @@ exports.contact = function(req, res) {
 //--------------------------------Search--------------------------------
 exports.search = function(req, res) {
   message = "";
-  if (req.method == "GET") {
+  if (req.method == "POST") {
     var post = req.body;
     var bodystyle = post.bodystyle;
     var make = post.make;
@@ -268,6 +268,7 @@ exports.search = function(req, res) {
       "'";
 
     db.query(sql, function(err, result) {
+      console.log(result);
       res.render("inventory.ejs", { data: result });
     });
   }
