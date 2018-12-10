@@ -1,3 +1,6 @@
+var crud = require("../js/crud");
+var build = new crud;
+
 //---------------------------------------------signup page call------------------------------------------------------
 exports.signup = function(req, res) {
   message = "";
@@ -186,7 +189,6 @@ exports.services = function(req, res) {
   }
 
   var sql = "SELECT * FROM `services`";
-
   db.query(sql, function(err, result) {
     res.render("services.ejs", { data: result });
   });
@@ -257,19 +259,36 @@ exports.search = function(req, res) {
     var bodystyle = post.bodystyle;
     var make = post.make;
     var color = post.color;
+    var constraints = [make, bodystyle, color];
 
-    var sql =
-      "SELECT * FROM `vehicles` WHERE `bodystyle`='" +
-      bodystyle +
-      "' AND  `make`='" +
-      make +
-      "' AND `color`='" +
-      color +
-      "'";
+    if (constraints[0] != "") {
+      constraints[0] = "make = '" + constraints[0] + "'";
+    }
+    if (constraints[1] != "") {
+      if (constraints[0] != "") {
+        constraints[0] += " AND ";
+      }
+      constraints[1] = "bodystyle = '" + constraints[1] + "'";
+    }
+    if (constraints[2] != "") {
+      if (constraints[1] != "") {
+        constraints[1] += " AND ";
+      } else if (constraints[0] != "") {
+        constraints[0] += " AND ";
+      }
+      constraints[2] = "color = '" + constraints[2] + "'";
+    }
 
-    db.query(sql, function(err, result) {
-      console.log(result);
-      res.render("inventory.ejs", { data: result });
-    });
+    var cols = ["*"];
+
+    var sql = build.readData("vehicles", "*", constraints);
+    console.log(sql);
+
+    if (constraints[1] + constraints[2] + constraints[3] != "") {
+      db.query(sql, function(err, result) {
+        console.log(result);
+        res.render("inventory.ejs", { data: result });
+      });
+    }
   }
 };
