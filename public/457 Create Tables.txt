@@ -1,0 +1,144 @@
+
+
+
+CREATE DATABASE Dealership;
+USE Dealership;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+CREATE TABLE Person
+(Ssn VARCHAR(9) NOT NULL,
+fname VARCHAR(15) NOT NULL,
+lname VARCHAR(15) NOT NULL,
+address VARCHAR(40) NOT NULL,
+PRIMARY KEY(Ssn));
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `first_name` text NOT NULL,
+  `last_name` text NOT NULL,
+  `mob_no` varchar(10) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `password` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+CREATE TABLE Employee
+(Employee_id INT AUTO_INCREMENT,
+fname VARCHAR(15) NOT NULL,
+lname VARCHAR(15) NOT NULL,
+address VARCHAR(40) NOT NULL,
+PRIMARY KEY(Employee_id))
+AUTO_INCREMENT = 1000;
+
+CREATE TABLE Salesperson
+(salesperson_id INT AUTO_INCREMENT,
+emp_id INT NOT NULL,
+PRIMARY KEY(salesperson_id),
+FOREIGN KEY(emp_id) REFERENCES Employee(Employee_id));
+
+CREATE TABLE Mechanic
+(mechanic_id INT AUTO_INCREMENT,
+emp_id INT NOT NULL,
+PRIMARY KEY(mechanic_id),
+FOREIGN KEY(emp_id) REFERENCES Employee(Employee_id));
+
+CREATE TABLE `Manager`
+(`manager_id` INT AUTO_INCREMENT,
+`emp_id` INT NOT NULL,
+`text` text NOT NULL,
+PRIMARY KEY(`manager_id`),
+FOREIGN KEY(`emp_id`) REFERENCES Employee(`Employee_id`));
+
+CREATE TABLE Login
+(userName VARCHAR(15) NOT NULL,
+pssn VARCHAR(9) NOT NULL,
+password VARCHAR(15) NOT NULL,
+PRIMARY KEY(userName),
+FOREIGN KEY(pssn) REFERENCES Person(Ssn));
+
+CREATE TABLE Sales
+(Sale_no INT AUTO_INCREMENT NOT NULL,
+sp_id INT NOT NULL,
+c_id INT NOT NULL,
+svin VARCHAR(17) NOT NULL,
+PRIMARY KEY(Sale_no),
+FOREIGN KEY(sp_id) REFERENCES Salesperson(salesperson_id),
+FOREIGN KEY(c_id) REFERENCES Customer(Cust_id),
+FOREIGN KEY(svin) REFERENCES Vehicle(vin));
+
+CREATE TABLE Branch
+(Branch_id VARCHAR(5) NOT NULL,
+location VARCHAR(40),
+m_id INT NOT NULL,
+PRIMARY KEY(Branch_id),
+FOREIGN KEY(m_id) REFERENCES Manager(manager_id));
+
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `vin` varchar(17) NOT NULL,
+  `year` varchar(4) NOT NULL,
+  `make` text NOT NULL,
+  `model` text NOT NULL,
+  `bodystyle` text NOT NULL,
+  `color` text NOT NULL,
+  `price` int(11) NOT NULL,
+  PRIMARY KEY (`vin`));
+
+CREATE TABLE Service
+(Service_id INT AUTO_INCREMENT NOT NULL,
+VIN VARCHAR(17) NOT NULL,
+mech_id INT NOT NULL,
+PRIMARY KEY(Service_id),
+FOREIGN KEY(mech_id) REFERENCES Mechanic(mechanic_id));
+
+CREATE TABLE Vehicle
+(VIN VARCHAR(17) NOT NULL,
+color VARCHAR(15) NOT NULL,
+price INT NOT NULL,
+PRIMARY KEY(VIN));
+
+CREATE TABLE Car
+(VIN VARCHAR(17) UNIQUE NOT NULL,
+doors INT NOT NULL,
+FOREIGN KEY(VIN) REFERENCES Vehicle(VIN));
+
+CREATE TABLE SUV
+(VIN VARCHAR(17) UNIQUE NOT NULL,
+seats INT NOT NULL,
+FOREIGN KEY(VIN) REFERENCES Vehicle(VIN));
+
+CREATE TABLE Truck
+(VIN VARCHAR(17) UNIQUE NOT NULL,
+horsepower INT NOT NULL,
+FOREIGN KEY(VIN) REFERENCES Vehicle(VIN));
+
+CREATE TABLE Options
+(Option_id INT AUTO_INCREMENT NOT NULL,
+option_name VARCHAR(30) NOT NULL,
+option_price INT NOT NULL,
+PRIMARY KEY(Option_id));
+
+CREATE TABLE Loans
+(Loan_no INT AUTO_INCREMENT NOT NULL,
+Loan_Amount INT NOT NULL,
+PRIMARY KEY(Loan_no));
+
+CREATE TABLE UsedReport
+(Report_No INT AUTO_INCREMENT NOT NULL,
+VIN VARCHAR(17) NOT NULL,
+Description VARCHAR(500),
+PRIMARY KEY(Report_no),
+FOREIGN KEY(VIN) REFERENCES Vehicle(VIN));;
+
+CREATE TABLE IF NOT EXISTS `services` (
+  `service` text NOT NULL,
+  `date` date NOT NULL);
+
+CREATE TABLE IF NOT EXISTS `contact` (
+  `contact_id` INT NOT NULL AUTO_INCREMENT,
+  `fName` text NOT NULL,
+  `lName` text NOT NULL,
+  `mob_no` varchar(10) NOT NULL,
+  `text` text NOT NULL,
+  PRIMARY KEY (`contact_id`))
+  AUTO_INCREMENT=1;
