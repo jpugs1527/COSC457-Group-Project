@@ -2,6 +2,7 @@
 
 
 ## To install and run
+* Install NodeJS
 * Clone repo into VS Code environment
 * Open new terminal
 * Navigate to location of the project
