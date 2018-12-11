@@ -16,66 +16,134 @@
       </div>
     </div>
     <div class="container col-md-12">
-      <div class="panel panel-info col-md-4 col-md-2">
+      <div class="panel panel-info col-md-2">
         <div class="panel-heading col-md-12">
           <h3 class="panel-title">Filters</h3>
         </div>
-        <section>
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-default dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+        <div class="panel-body">
+          <form
+            class="form-horizontal"
+            role="form"
+            method="post"
+            action="/home/search"
+            onSubmit="return checkblank(this);"
+          >
+            <div
+              id="signupalert"
+              style="display:none"
+              class="alert alert-danger"
             >
-              Vehichle Type <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a value="Car">Car</a></li>
-              <li><a value="Truck">Truck</a></li>
-              <li><a value="SUV">SUV</a></li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-default dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Make <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#">Ford</a></li>
-              <li><a href="#">Mercedes</a></li>
-              <li><a href="#">BMW</a></li>
-              <li><a href="#">Fiat</a></li>
-            </ul>
-          </div>
-        </section>
-        <section>
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-default dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Color <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#">Red</a></li>
-              <li><a href="#">Blue</a></li>
-              <li><a href="#">White</a></li>
-              <li><a href="#">Black</a></li>
-            </ul>
-          </div>
-        </section>
+              <p>Error:</p>
+              <span></span>
+            </div>
+
+            <div class="form-group">
+              <br />
+              <label for="make" class="col-md-3 control-label">Make</label>
+              <div class="col-md-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="make"
+                  placeholder="Make"
+                  
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bodystyle" class="col-md-3 control-label">Body</label>
+              <div class="col-md-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="bodystyle"
+                  placeholder="Bodystyle"
+                  
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="color" class="col-md-3 control-label">Color</label>
+              <div class="col-md-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="color"
+                  placeholder="Color"
+                  
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <!-- Button -->
+              <div class="col-md-offset-3 col-md-9">
+                <button id="btn-signup" type="submit" class="btn btn-info">
+                  <i class="glyphicon glyphicon-search"></i> Search
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--
+          <section>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Vehichle Type <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a value="Car">Car</a></li>
+                <li><a value="Truck">Truck</a></li>
+                <li><a value="SUV">SUV</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Make <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Honda</a></li>
+                <li><a href="#">Ford</a></li>
+                <li><a href="#">Mercedes</a></li>
+                <li><a href="#">BMW</a></li>
+                <li><a href="#">Fiat</a></li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Color <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Red</a></li>
+                <li><a href="#">Blue</a></li>
+                <li><a href="#">White</a></li>
+                <li><a href="#">Black</a></li>
+              </ul>
+            </div>
+          </section>
+        -->
       </div>
       <div class="panel panel-info col-md-offset-2 col-md-4">
         <div class="panel-heading col-md-12">
@@ -88,6 +156,8 @@
               <th>Year</th>
               <th>Make</th>
               <th>Model</th>
+              <th>Color</th>
+              <th>Bodystyle</th>
             </tr>
             <% if(data.length){ for(var i = 0;i < data.length;i++) { %>
             <tr>
@@ -95,10 +165,12 @@
               <td><%=data[i].year%></td>
               <td><%=data[i].make%></td>
               <td><%=data[i].model%></td>
+              <td><%=data[i].color%></td>
+              <td><%=data[i].bodystyle%></td>
             </tr>
             <% } }else{ %>
             <tr>
-              <td colspan="3">No data</td>
+              <td colspan="3">No Results</td>
             </tr>
             <% } %>
           </table>
