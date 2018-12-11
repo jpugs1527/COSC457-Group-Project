@@ -282,11 +282,9 @@ exports.search = function(req, res) {
     var cols = ["*"];
 
     var sql = build.readData("vehicles", "*", constraints);
-    console.log(sql);
 
     if (constraints[1] + constraints[2] + constraints[3] != "") {
       db.query(sql, function(err, result) {
-        console.log(result);
         res.render("inventory.ejs", { data: result });
       });
     }
