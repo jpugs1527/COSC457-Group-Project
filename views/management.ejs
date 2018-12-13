@@ -19,15 +19,18 @@
           <table class="table table-user-information">
             <tr>
               <th width="50px">No</th>
-              <th>Service</th>
-              <th>Date</th>
-              <th>Complete</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Mobile Number</th>
+              <th>Reason</th>
             </tr>
             <% if(data.length){ for(var i = 0;i < data.length;i++) { %>
             <tr>
               <td><%=(i+1)%></td>
-              <td><%=data[i].service%></td>
-              <td><%=data[i].date%></td> 
+              <td><%=data[i].fName%></td>
+              <td><%=data[i].lName%></td> 
+              <td><%=data[i].mob_no%></td> 
+              <td><%=data[i].text%></td> 
               <td><input type="checkbox"/></td>
             </tr>
             <% } }else{ %>
