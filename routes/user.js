@@ -324,6 +324,8 @@ exports.search = function (req, res) {
     }
   }
 };
+
+//--------------------------------Management ACL--------------------------------
 exports.management = function (req, res) {
   
   var userId = req.session.userId;
@@ -337,11 +339,11 @@ exports.management = function (req, res) {
     return;
   }
 
-  var sql = build.readData("services", "*", null, false);
+  var sql = build.readData("contact", "*", null, false);
   console.log(sql);
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.render("services.ejs", { data: result });
+    res.render("contact.ejs", { data: result });
   });
 };
