@@ -93,11 +93,12 @@ exports.managerLogin = function (req, res) {
         req.session.userId = results[0].id;
         req.session.user = results[0];
         level = results[0].access_level;
-        console.log("User #" + results[0].id + ":"+ level);
+        console.log("User #" + results[0].id + "::"+ level);
         if (level <= 2) {
-          res.redirect("/home/managerLogin");
+          console.log("Turkey");
+          res.render("managerLogin.ejs");
         } else {
-          res.redirect("/home/management")
+          res.redirect("/home/management");
         }
       } else {
         message = "Incorrect username and/or password.";
