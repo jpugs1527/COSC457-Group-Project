@@ -102,11 +102,11 @@ exports.managerLogin = function (req, res) {
         }
       } else {
         message = "Incorrect username and/or password.";
-        res.render("index.ejs", { message: message });
+        res.render("managerLogin.ejs", { message: message });
       }
     });
   } else {
-    res.render("index.ejs", { message: message });
+    res.render("managerLogin.ejs", { message: message });
   }
 };
 
@@ -272,7 +272,7 @@ exports.contact = function (req, res) {
     var query = db.query(sql, function (err, result) {
       if (err) throw err;
       message = "Message sent to management!";
-      res.render("contact.ejs", { message: message });
+      res.render("contact.ejs", { data: result });
     });
   } else {
     res.render("contact");
