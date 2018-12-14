@@ -59,7 +59,7 @@ app.post("/home/contact", user.contact);  //call to post contact form to manager
 app.post("/home/search", user.search); //call to post for search
 app.get("/home/management",user.management);
 app.get("/home/managerLogin",user.managerLogin);
-app.post("/home/inventory", user.remove);
+app.delete("/home/inventory", user.remove);
 
 //Middleware
 app.listen(8082);

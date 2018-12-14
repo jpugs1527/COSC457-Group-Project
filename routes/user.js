@@ -354,7 +354,7 @@ exports.remove = function(req, res) {
     res.redirect("/home/inventory");
     return;
   }
-  if (req.method == "POST") {
+  if (req.method == "DELETE") {
     var vin = req.body.vin;
   }
 
