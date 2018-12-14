@@ -351,7 +351,7 @@ exports.management = function(req, res) {
 exports.remove = function(req, res) {
   var userId = req.session.userId;
   if (userId == null) {
-    res.redirect("/login");
+    res.redirect("/home/inventory");
     return;
   }
   if (req.method == "DELETE") {
