@@ -358,7 +358,7 @@ exports.remove = function(req, res) {
     var vin = req.body.vin;
   }
 
-  var sql = "DELETE FROM services WHERE vin = '" + vin + "'";
+  var sql = "DELETE FROM vehicles WHERE vin = '" + vin + "'";
   db.query(sql, function(err, result) {
     res.render("inventory.ejs", { data: result });
   });
