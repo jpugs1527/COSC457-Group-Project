@@ -340,10 +340,21 @@ exports.management = function (req, res) {
   }
 
   var sql = build.readData("contact", "*", null, false);
-  console.log(sql);
 
   db.query(sql, function (err, result) {
     if (err) throw err;
     res.render("management.ejs", { data: result });
   });
 };
+
+//-----------------------------Delete Vehicle--------------------------------
+exports.remove = function (req, res) {
+  var userId = req.session.userId;
+  if (userId == null) {
+    res.redirect("/login");
+    return;
+  }
+
+  var sql = "DELETE FROM services WHERE address = 'Mountain 21'"
+  
+}
