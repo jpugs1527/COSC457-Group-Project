@@ -354,11 +354,12 @@ exports.remove = function(req, res) {
     res.redirect("/login");
     return;
   }
-  if (req.method == "POST") {
+  if (req.method == "DELETE") {
     var vin = req.body.vin;
   }
 
-  var sql = "DELETE FROM services WHERE vin = '" + vin + "'";
+  var sql = "DELETE FROM 'services' WHERE 'vin' = '" + vin + "'";
+  console.log(vin);
   db.query(sql, function(err, result) {
     res.render("inventory.ejs", { data: result });
   });
