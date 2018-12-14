@@ -102,11 +102,11 @@ exports.managerLogin = function (req, res) {
         }
       } else {
         message = "Incorrect username and/or password.";
-        res.render("index.ejs", { message: message });
+        res.render("managerLogin.ejs", { message: message });
       }
     });
   } else {
-    res.render("index.ejs", { message: message });
+    res.render("managerLogin.ejs", { message: message });
   }
 };
 
