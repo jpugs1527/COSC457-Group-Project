@@ -4,6 +4,7 @@
 ## To install and run
 * Install Node
 * Create DB and tables in mysql
+  * Use our DDL text file to create all the tables
 * Clone repo into VS Code environment
 * Open new terminal
 * Navigate to location of the project

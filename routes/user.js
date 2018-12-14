@@ -272,7 +272,7 @@ exports.contact = function (req, res) {
     var query = db.query(sql, function (err, result) {
       if (err) throw err;
       message = "Message sent to management!";
-      res.render("contact.ejs", { message: message });
+      res.render("contact.ejs", { data: result });
     });
   } else {
     res.render("contact");
@@ -344,6 +344,6 @@ exports.management = function (req, res) {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.render("contact.ejs", { data: result });
+    res.render("managerLogin.ejs", { data: result });
   });
 };
