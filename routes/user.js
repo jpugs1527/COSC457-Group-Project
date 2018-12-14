@@ -344,6 +344,6 @@ exports.management = function (req, res) {
 
   db.query(sql, function (err, result) {
     if (err) throw err;
-    res.render("contact.ejs", { data: result });
+    res.render("management.ejs", { data: result });
   });
 };
